@@ -1,2 +1,4 @@
 tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log
 
+http://www.cloudera.com/documentation/archive/manager/4-x/4-8-0/Cloudera-Manager-Administration-Guide/cmag_stop_restart_agents.html
+
