@@ -1,0 +1,27 @@
+to assign 10GB memory and select both the advanced options
+
+https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1003746
+
+Upgrading the virtual hardware
+
+To upgrade the virtual hardware:
+
+Note: For Lab Manager virtual machines, they must be undeployed, have their virtual hardware version upgraded from their configuration, then redeployed.
+Power on the virtual machine.
+Install VMware Tools.
+Power off the virtual machine.
+Change the hardware setting:
+
+In Workstation 8, go to VM > Manage > Change Hardware Compatibility.
+
+In ESXi/ESX, Server, Lab Manager, or GSX, depending on the version in use, right-click the entry for the virtual machine, then select:
+Upgrade or Change Version
+Upgrade Virtual Machine
+In VMware Player, open the virtual machine's .vmx file using a text editor, For more information on editing, see Editing the .vmx file of a VMware Workstation and VMware Player Virtual machine(2057902).
+memsize = "10240"  (Make this change)
+
+Locate the entry virtualHW.version = "8".
+Change the above entry to:
+virtualHW.version = "11"
+Save the .vmx file.
+Note: Changes made to the .vmx file do not take effect until the next time VMware Workstation or VMware Player is opened.
