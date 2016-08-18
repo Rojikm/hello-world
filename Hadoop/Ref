@@ -1,0 +1,2 @@
+tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log
+
