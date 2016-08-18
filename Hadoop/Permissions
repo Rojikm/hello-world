@@ -1,0 +1,12 @@
+http://www.techradar.com/us/how-to/computing/apple/terminal-101-file-permissions-1305647
+
+https://support.rackspace.com/how-to/checking-linux-file-permissions-with-ls/
+
+https://community.cloudera.com/t5/Storage-Random-Access-HDFS/Failed-to-start-Hadoop-namenode-Return-value-1/td-p/23999
+ setting permissions to 777 is never a good idea
+ 
+ http://superuser.com/questions/590683/how-do-i-find-my-user-id-and-group-in-mac-os-x
+ 
+ http://stackoverflow.com/questions/8328481/chmod-777-to-a-folder-and-all-contents
+ 
+ 
