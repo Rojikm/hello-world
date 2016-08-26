@@ -5,3 +5,13 @@ hadoop fs -copyFromLocal /usr/tmp/datasets/Student_Data.txt /tmp/work/datasets/i
 grunt> sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',');
 grunt> 
 grunt> dump sdata;
+
+
+/tmp/work/datasets/input/Student_Data.txt
+=========================================
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
