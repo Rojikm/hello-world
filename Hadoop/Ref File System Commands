@@ -2,6 +2,9 @@ hadoop fs -mkdir /tmp/work
 
 hadoop fs -copyFromLocal /usr/tmp/datasets/Student_Data.txt /tmp/work/datasets/input
 hadoop fs -copyFromLocal one.txt /tmp/work/datasets/input/wordcountdir
+hadoop fs -copyFromLocal wordcount.pig /tmp/work/pig;
+
+pig -f /tmp/work/pig/wordcount.pig;
 
 sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',');
 
@@ -29,4 +32,14 @@ rdata = FOREACH sdata generate id, city;
 =============================================
 Hello World
 Hello Hadoop
+
+
+Create wordcount.pig in /usr/tmp/datasets/wordcountdir
+data = load '/tmp/work/datasets/input//wordcountdir' as (line);
+words = foreach data generate flatten(TOKENIZE(line)) as word;
+grpd = group words by word;
+cntd = foreach grpd generate group, COUNT(words);
+dump cntd;
+
+pig -f wordcount.pig;
 
