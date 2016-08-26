@@ -1,11 +1,20 @@
 hadoop fs -mkdir /tmp/work
 
 hadoop fs -copyFromLocal /usr/tmp/datasets/Student_Data.txt /tmp/work/datasets/input
+hadoop fs -copyFromLocal one.txt /tmp/work/datasets/input/wordcountdir
 
-grunt> sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',');
-grunt> 
-grunt> dump sdata;
+sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',');
 
+dump sdata;
+
+sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',') AS (id:int, fName:chararray, lName:chararray, 
+phone:int, 
+city:chararray);
+
+fdata = FILTER sdata by id > 3;
+
+rdata = FOREACH sdata generate id, phone;
+rdata = FOREACH sdata generate id, city;
 
 /tmp/work/datasets/input/Student_Data.txt
 =========================================
@@ -15,3 +24,9 @@ grunt> dump sdata;
 004,Preethi,Agarwal,9848022330,Pune
 005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
 006,Archana,Mishra,9848022335,Chennai.
+
+/tmp/work/datasets/input/wordcountdir/one.txt
+=============================================
+Hello World
+Hello Hadoop
+
