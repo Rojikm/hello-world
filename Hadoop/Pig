@@ -1,0 +1,39 @@
+
+sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',');
+
+dump sdata;
+
+sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',') AS (id:int, fName:chararray, lName:chararray, 
+phone:int, 
+city:chararray);
+
+fdata = FILTER sdata by id > 3;
+
+rdata = FOREACH sdata generate id, city;
+
+STORE rdata into '/tmp/work/datasets/output/a' USING PigStorage('|'); 
+--Writes rdata with pipe as delimiter into output directory.
+
+/tmp/work/datasets/input/Student_Data.txt
+=========================================
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+
+/tmp/work/datasets/input/wordcountdir/one.txt
+=============================================
+Hello World
+Hello Hadoop
+
+
+Create wordcount.pig in /usr/tmp/datasets/wordcountdir
+data = load '/tmp/work/datasets/input//wordcountdir' as (line);
+words = foreach data generate flatten(TOKENIZE(line)) as word;
+grpd = group words by word;
+cntd = foreach grpd generate group, COUNT(words);
+dump cntd;
+
+pig -f wordcount.pig;
