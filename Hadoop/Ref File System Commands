@@ -15,8 +15,10 @@ city:chararray);
 
 fdata = FILTER sdata by id > 3;
 
-rdata = FOREACH sdata generate id, phone;
 rdata = FOREACH sdata generate id, city;
+
+STORE rdata into '/tmp/work/datasets/output/a' USING PigStorage('|'); 
+--Writes rdata with pipe as delimiter into output directory.
 
 /tmp/work/datasets/input/Student_Data.txt
 =========================================
