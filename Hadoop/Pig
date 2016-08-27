@@ -24,3 +24,9 @@ cntd = foreach grpd generate group, COUNT(words);
 dump cntd;
 
 pig -f wordcount.pig;
+-----
+Pig UDF; Package myPigUDF; Class PERCENT
+
+REGISTER /usr/tmp/myudfs.jar
+rdata = FOREACH sdata generate id, myPigUDF.PERCENT(city);
+--gives city in UPPER Case
