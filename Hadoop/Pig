@@ -24,9 +24,33 @@ cntd = foreach grpd generate group, COUNT(words);
 dump cntd;
 
 pig -f wordcount.pig;
------
+----------------------------------
 Pig UDF; Package myPigUDF; Class PERCENT
 
-REGISTER /usr/tmp/myudfs.jar
-rdata = FOREACH sdata generate id, myPigUDF.PERCENT(city);
+package myPigUDF;
+
+import java.io.IOException;
+
+import org.apache.pig.EvalFunc;
+import org.apache.pig.data.Tuple;
+
+public class PERCENT extends EvalFunc<String>{
+	public String exec(Tuple input) throws IOException{
+		if (input == null || input.size()==0 || input.get(0) == null)
+			return null;
+		try{
+			String str = (String)input.get(0);
+			return str.toUpperCase();
+			
+		}catch(Exception e){
+			throw new IOException ("Caught exception processing input row ", e);
+		}
+	}
+
+}
+
+
+grunt> REGISTER /usr/tmp/myudfs.jar
+grunt> rdata = FOREACH sdata generate id, myPigUDF.PERCENT(city);
 --gives city in UPPER Case
+----------------------------------
