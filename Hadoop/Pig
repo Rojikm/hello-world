@@ -3,9 +3,8 @@ sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',');
 
 dump sdata;
 
-sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',') AS (id:int, fName:chararray, lName:chararray, 
-phone:int, 
-city:chararray);
+sdata = LOAD '/tmp/work/datasets/input/Student_Data.txt' using PigStorage(',') AS (id:biginteger, fName:chararray, lName:chararray, 
+phone:int, city:chararray);
 
 fdata = FILTER sdata by id > 3;
 
