@@ -60,10 +60,24 @@ Fltrd = filter Users by age > 18;
 
 Pages = LOAD '/tmp/work/datasets/input/pages.txt' USING PigStorage(',') as (user,url);
 Jnd = join Fltrd by name, Pages by user; 
+Output~~~~~~~~~~~~~~~~~~~
+(Raj,20,Raj,Google)
+(Khan,30,Khan,LinkedIn)
+(Suraj,23,Suraj,Facebook)
+(Suraj,23,Suraj,msn)
+(Suraj,23,Suraj,Google)
+~~~~~~~~~~~~~~~~~~~
 Grpd = group Jnd by url;
-
+Output~~~~~~~~~~~~~~~~~~~
+(msn,{(Suraj,23,Suraj,msn)})
+(Google,{(Suraj,23,Suraj,Google),(Raj,20,Raj,Google)})
+(Facebook,{(Suraj,23,Suraj,Facebook)})
+(LinkedIn,{(Khan,30,Khan,LinkedIn)})
+~~~~~~~~~~~~~~~~~~~
 Smmd = foreach Grpd generate group, COUNT(Jnd) as clicks; 
+Output~~~~~~~~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~~~~~~
 Srtd = order Smmd by clicks desc;
 
 Top5 = limit Srtd 2;
