@@ -1,5 +1,7 @@
 hadoop fs -mkdir /tmp/work
 
+NOTE - To create new file using vi, ssh root@localhost
+
 hadoop fs -copyFromLocal /usr/tmp/datasets/Student_Data.txt /tmp/work/datasets/input
 hadoop fs -copyFromLocal one.txt /tmp/work/datasets/input/wordcountdir
 hadoop fs -copyFromLocal wordcount.pig /tmp/work/pig;
