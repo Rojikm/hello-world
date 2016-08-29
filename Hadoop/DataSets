@@ -13,3 +13,20 @@
 =============================================
 Hello World
 Hello Hadoop
+
+/tmp/work/datasets/input/wordcountdir/users.txt
+=============================================
+Aby,15
+Raj,20
+Suraj,23
+Khan,30
+
+/tmp/work/datasets/input/wordcountdir/pages.txt
+=============================================
+Aby,Amazon
+Aby,Google
+Raj,Google
+Suraj,Google
+Suraj,msn
+Suraj,Facebook
+Khan,LinkedIn
