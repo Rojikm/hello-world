@@ -54,3 +54,17 @@ grunt> REGISTER /usr/tmp/myudfs.jar
 grunt> rdata = FOREACH sdata generate id, myPigUDF.PERCENT(city);
 --gives city in UPPER Case
 ----------------------------------
+PIG - Find top 2 sites for users age above 18
+Users = LOAD '/tmp/work/datasets/input/users.txt' USING PigStorage(',') as (name,age);
+Fltrd = filter Users by age > 18;
+
+Pages = LOAD '/tmp/work/datasets/input/pages.txt' USING PigStorage(',') as (user,url);
+Jnd = join Fltrd by name, Pages by user; 
+Grpd = group Jnd by url;
+
+Smmd = foreach Grpd generate group, COUNT(Jnd) as clicks; 
+
+Srtd = order Smmd by clicks desc;
+
+Top5 = limit Srtd 2;
+--------------------
